@@ -1,0 +1,182 @@
+{% extends 'landing/landing_layout.html' %}
+{% block content %}
+<div class="container mt-5">
+    <header class="masthead bg-secondary text-black">
+        <div class="row">
+            <div class="col">
+                <!-- Masthead Heading-->
+                <h1 class="masthead-heading mb-0 font-weight-bold">БЫСТРЫЙ СТАРТ</h1>
+                <!-- Masthead Subheading-->
+                <p class="pre-wrap masthead-subheading font-weight-light mb-0 mt-4">Пользоваться GASCALC легко! Сейчас Вы узнаете как.</p>
+            </div>
+        </div>
+    </header>
+</div>
+
+<div class="container mt-5">
+  <hr>
+  <section class="page-section step1" id="">
+    <a class="anchor" id="step1"></a>
+      <div class="container mt-5">
+          <!-- Spec Section Heading-->
+          <h3 class="font-weight-bold">В ЧЕМ ЭКОНОМИЯ ВРЕМЕНИ?</h3>
+          <!-- Spec Grid Items-->
+          <div class="row">
+              <!-- Spec Items-->
+              <div class="col mb-5">
+                  <p class="mb-0 mt-4 text-justify">
+                    GASCALC позволяет составлять путевые листы на основе набора данных: машин предприятия/сотрудников и адресов по которым сотрудники перемещаеются в течении рабочего дня.
+                  </p>
+                  <p class="mb-0 mt-4 text-justify">
+                    Первым способом составления путевых листов в GASCALC рассмотрим ручной: в этом режиме требуется указать сотрудника, его транспорт и адреса, по которым он перемещается в течении суток и дату поездки. На основании этих данных будет составлен маршрут сотрудника. По километражу маршрута автоматически будет рассчитан расход топлива, а если указать стоимость топлива будут расчитаны и затраты на маршрут. Полученный маршрут можно сохранить в виде путевого листа на свой компьютер. 
+                  </p>
+
+                  <p class="mb-0 mt-4 text-justify">
+                    Второй способ составления путевых листов - автоматический. Достаточно выбрать сотрудника, авто, казать дату поездки и стартовый адрес. GASCALC выгрузит из настроек пользователя адреса и составит маршрут, который сотрудник может преодолеть в течении своего рабочего времени. Этот подход будет полезен тем, кто хочет оптимизировать расходы на логистику или спланировать перемещения сотрудников.
+                  </p>
+              </div>
+              <div class="col mb-5 my-auto">
+                  <div class="w-50 mx-auto">
+                      <img class="img-fluid" src="{{ url_for('static', filename='assets/img/portfolio/petrol.png') }}">
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+</div>
+
+<div class="container mt-5">
+  <hr>
+  <section class="page-section step1" id="">
+    <a class="anchor" id="step1"></a>
+      <div class="container mt-5">
+          <!-- Spec Section Heading-->
+          <h3 class="font-weight-bold">КАК ПОЛЬЗОВАТЬСЯ ПРИЛОЖЕНИЕМ?</h3>
+          <!-- Spec Grid Items-->
+          <div class="row">
+              <!-- Spec Items-->
+              <div class="col mb-5">
+                  <p class="mb-0 mt-4 text-justify">
+                    Для начала работы требуется войти приложение с демо-аккаунта или с полноценного аккаунта с подпиской. Если у Вас еще нет аккаунта в GASCALC Вы можете зарегистрироваться.
+                  </p>
+                  <button type="button" class="btn btn-success btn-lg mt-4">Регистрация</button>
+                  <p class="mb-0 mt-4 text-justify">
+                    После входа в аккаунт нужно ввести необходимые для расчетов данные.
+                  </p>
+              </div>
+              <div class="col mb-5 my-auto">
+                  <div class="w-50 mx-auto">
+                      <img class="img-fluid" src="{{ url_for('static', filename='assets/img/portfolio/petrol.png') }}">
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+</div>
+
+<div class="container mt-5">
+  <hr>
+  <section class="page-section step1" id="">
+    <a class="anchor" id="step1"></a>
+      <div class="container mt-5">
+          <!-- Spec Section Heading-->
+          <h3 class="font-weight-bold">ШАГ 1 | ИМПОРТ ДАННЫХ</h3>
+          <!-- Spec Grid Items-->
+          <div class="row">
+              <!-- Spec Items-->
+              <div class="col mb-5">
+                  <p class="mb-0 mt-4 text-justify">
+                    Для составления маршрутов и путевых листов приложению требуются данные об автопарке, сотрудниках и адресах, по которым сотрудники перемещаются.
+                  </p>
+                  <p class="mb-0 mt-4 text-justify">
+                    Данные можно занести в пользовательсую базу данных вручную, либо воспользоваться импортом из файла таблиц, например формата Excel. Чтобы не ошибиться можно скачать шаблон таблицы с пояснениями.
+                  </p>
+              </div>
+              <div class="col mb-5 my-auto">
+                  <div class="w-50 mx-auto">
+                      <img class="img-fluid" src="{{ url_for('static', filename='assets/img/portfolio/petrol.png') }}">
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+</div>
+
+<div class="container mt-5">
+  <hr>
+  <section class="page-section step1" id="">
+    <a class="anchor" id="step1"></a>
+      <div class="container mt-5">
+          <!-- Spec Section Heading-->
+          <h3 class="font-weight-bold">ШАГ 2 | РАСЧЕТ</h3>
+          <!-- Spec Grid Items-->
+          <div class="row">
+              <!-- Spec Items-->
+              <div class="col mb-5">
+                  <p class="mb-0 mt-4 text-justify">
+                    После того как в пользовательскую базу данных были внесены необходимые сведения можно приступать к расчету.
+                  </p>
+                  <p class="mb-0 mt-4 text-justify">
+                    Сначала нужно выбрать режим работы (РУЧНОЙ | АВТО). Независимо от режима требуется выбрать сотрудника, для которого составляется маршрут, его транспорт и дату поездки.
+                  </p>
+                  <div class="card">
+                    <div class="card-header">
+                      РУЧНОЙ РЕЖИМ
+                    </div>
+                    <div class="card-body">
+                      В ручном режиме также необходимо указать адреса, по которым сотрудник должен перемещаться во время поездки. Для выбора доступны адреса, ранее внесенные в пользовательскую базу данных.
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header">
+                      АТОМАТИЧЕСКИЙ РЕЖИМ
+                    </div>
+                    <div class="card-body">
+                      В автоматическом режиме необходимо указать стартовый адрес - адрес, с которого сотрудник начинает свой маршрут и на который вернется при завершении.
+                    </div>
+                  </div>
+                  <p class="mb-0 mt-4 text-justify">
+                    Теперь можно нажать кнопку РАСЧЕТ и маршрут будет составлен.
+                  </p>
+              </div>
+              <div class="col mb-5 my-auto">
+                  <div class="w-50 mx-auto">
+                      <img class="img-fluid" src="{{ url_for('static', filename='assets/img/portfolio/petrol.png') }}">
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+</div>
+
+<div class="container mt-5">
+  <hr>
+  <section class="page-section step1" id="">
+    <a class="anchor" id="step1"></a>
+      <div class="container mt-5">
+          <!-- Spec Section Heading-->
+          <h3 class="font-weight-bold">ШАГ 3 | СВОДКА МАРШРУТА</h3>
+          <!-- Spec Grid Items-->
+          <div class="row">
+              <!-- Spec Items-->
+              <div class="col mb-5">
+                  <p class="mb-0 mt-4 text-justify">
+                    По окончании расчета в окне справа появится заполненная сводка. В ней можно увидеть километраж, итоговый расход топлива и затраты на маршрут.
+                  </p>
+                  <p class="mb-0 mt-4 text-justify">
+                    Если Вы удовлетворены результатом расчета можно сразу выгрузить его в виде файла в формате .docx (открывается в редакторе Word).
+                  </p>
+                  <p class="mb-0 mt-4 text-justify">
+                    Также можно сохранить маршут в пользовательской базе данных и выгрузить позднее. При этом расходы на маршрут отразятся в общем учете расходов за отчетный период.
+                  </p>
+              </div>
+              <div class="col mb-5 my-auto">
+                  <div class="w-50 mx-auto">
+                      <img class="img-fluid" src="{{ url_for('static', filename='assets/img/portfolio/petrol.png') }}">
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+</div>
+{%  endblock content %}

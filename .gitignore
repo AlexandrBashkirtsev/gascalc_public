@@ -1,0 +1,3 @@
+# ignore help file
+git_help.txt
+__pycache__/

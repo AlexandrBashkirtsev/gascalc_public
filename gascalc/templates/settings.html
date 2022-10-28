@@ -1,0 +1,97 @@
+{% extends 'layout.html' %}
+{% set active_page = "settings" %}
+{% block content %}
+
+<!--CONTROL BUTTONS-->
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+	<h1 class="h2">Настройки</h1>
+</div>
+
+<!--ADD SETTINGS FORM-->
+<form method="POST" action="" enctype="multipart/form-data">
+	{{ form.hidden_tag() }}
+	<fieldset class="form-group">
+		<div class="row">
+			<div class="form-group col-sm">
+				{{ form.org_name.label(class="form-control-label") }}
+				{% if form.org_name.errors %}
+					{{ form.org_name(class="form-control form-control-sm is-invalid") }}
+					<div class="invalid-feedback">
+						{% for error in form.org_name.errors %}
+							<span>{{ error }}</span>
+						{% endfor %}
+					</div>
+				{% else %}
+					{{ form.org_name(class="form-control form-control-sm") }}
+				{% endif %}
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-sm">
+					{{ form.org_addr.label(class="form-control-label") }}
+					{% if form.org_addr.errors %}
+						{{ form.org_addr(class="form-control form-control-sm is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.org_addr.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.org_addr(class="form-control form-control-sm") }}
+					{% endif %}
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-sm-3">
+					{{ form.OGRN.label(class="form-control-label") }}
+					{% if form.OGRN.errors %}
+						{{ form.OGRN(class="form-control form-control-sm is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.OGRN.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.OGRN(class="form-control form-control-sm") }}
+					{% endif %}
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-sm-3">
+					{{ form.INN.label(class="form-control-label") }}
+					{% if form.INN.errors %}
+						{{ form.INN(class="form-control form-control-sm is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.INN.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.INN(class="form-control form-control-sm") }}
+					{% endif %}
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-sm-3">
+					{{ form.accountant.label(class="form-control-label") }}
+					{% if form.accountant.errors %}
+						{{ form.accountant(class="form-control form-control-sm is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.accountant.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.accountant(class="form-control form-control-sm") }}
+					{% endif %}
+			</div>
+		</div>	
+
+	</fieldset>
+
+	<div class="form-group">
+		{{ form.submit(class="btn btn-outline-info") }}
+	</div>
+</form>
+
+{%  endblock content %}

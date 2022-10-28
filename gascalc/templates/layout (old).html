@@ -1,0 +1,120 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+
+    <title>Gas and Routes calculator</title>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/old/bootstrap.min.css') }}">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/select2.min.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/select2-bootstrap4.css') }}">
+
+    <!--STYLES VISUAL
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/_variables.scss') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/_bootswatch.scss') }}">-->
+
+    <script src="{{ url_for('static', filename='js/jquery-3.5.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/select2.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/dynamic-form.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/moment.js') }}"></script>
+    <link rel="icon" href="{{ url_for('static', filename='assets/img/logo.png') }}">
+
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Расчет расстояния</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+    </nav>
+
+    <div class="container-fluid">
+
+      <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="{{ 'nav-link active' if active_page == 'home' else 'nav-link' }}" href="{{ url_for('add_locations.home') }}">
+                  <span data-feather="home"></span>
+                  Адреса
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="{{ 'nav-link active' if active_page == 'employees' else 'nav-link' }}" href="{{ url_for('add_employees.employees') }}">
+                  <span data-feather="users"></span>
+                  Сотрудники
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="{{ 'nav-link active' if active_page == 'cars' else 'nav-link' }}" href="{{ url_for('add_cars.cars') }}">
+                  <span data-feather="truck"></span>
+                  Автопарк
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="{{ 'nav-link active' if active_page == 'calculate' else 'nav-link' }}" href="{{ url_for('calculations.start_calc') }}">
+                  <span data-feather="map"></span>
+                  Расчеты
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="{{ 'nav-link active' if active_page == 'lists' else 'nav-link' }}" href="{{ url_for('calculations.lists') }}">
+                  <span data-feather="file-text"></span>
+                  Маршрутные листы
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="{{ 'nav-link active' if active_page == 'settings' else 'nav-link' }}" href="{{ url_for('settings.change') }}">
+                  <span data-feather="settings"></span>
+                  Настройки
+                </a>
+              </li>
+              <li class="nav-item">
+                <hr/>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="user"></span>
+                  {{ current_user.email }}
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('account.logout') }}">
+                  <span data-feather="log-out"></span>
+                  Выйти
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        {% block content %}{% endblock content %}
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/tempusdominus-bootstrap-4.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+    <script>
+      feather.replace()
+    </script>
+  </body>
+</html>

@@ -1,0 +1,119 @@
+{% extends 'layout.html' %}
+{% set active_page = "cars" %}
+{% block content %}
+
+<!--CONTROL BUTTONS-->
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+	<h1 class="h2">База авто</h1>
+	<div class="btn-toolbar mb-2 mb-md-0">
+	  <div class="btn-group mr-2">
+	    <a class="btn btn-sm btn-outline-secondary" href="#" data-toggle="modal" data-target="#import_cars_modal">Импорт</a>
+	    <a class="btn btn-sm btn-outline-secondary" href="{{ url_for('add_cars.export') }}">Экспорт</a>
+	  </div>
+	</div>
+</div>
+
+<!--ADD CAR FORM-->
+<form method="POST" action="" enctype="multipart/form-data">
+	{{ form.hidden_tag() }}
+	<fieldset class="form-group">
+		<div class="row">
+			<div class="form-group col-sm-4">
+				{{ form.car.label(class="form-control-label") }}
+				{% if form.car.errors %}
+					{{ form.car(class="form-control form-control-sm is-invalid") }}
+					<div class="invalid-feedback">
+						{% for error in form.car.errors %}
+							<span>{{ error }}</span>
+						{% endfor %}
+					</div>
+				{% else %}
+					{{ form.car(class="form-control form-control-sm") }}
+				{% endif %}
+			</div>
+
+			<div class="form-group col-sm-3">
+					{{ form.fuel.label(class="form-control-label") }}
+					{% if form.fuel.errors %}
+						{{ form.fuel(class="form-control form-control-sm is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.fuel.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.fuel(class="form-control form-control-sm") }}
+					{% endif %}
+			</div>
+
+			<div class="form-group col-sm-3">
+					{{ form.consumption.label(class="form-control-label") }}
+					{% if form.consumption.errors %}
+						{{ form.consumption(class="form-control form-control-sm is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.consumption.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.consumption(class="form-control form-control-sm") }}
+					{% endif %}
+			</div>
+
+		</div>
+
+	</fieldset>
+
+	<div class="form-group">
+		{{ form.submit(class="btn btn-outline-info") }}
+	</div>
+</form>
+
+<!--TABLE OF LOCATIONS-->
+<h2>Автомобили</h2>
+<div class="table-responsive">
+<table class="table table-striped table-sm">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Автомобиль</th>
+      <th>Топливо</th>
+      <th>Расход</th>
+    </tr>
+  </thead>
+  <tbody>
+  	{% for car in cars %}
+  		<tr>
+  		  <td>{{ car.id }}</td>
+	      <td>{{ car.car }}</td>
+	      <td>{{ car.fuel }}</td>
+	      <td>{{ car.consumption }}</td>
+	      <td>
+	      	<form action="/delete_c_row/" method="POST">
+			    <input id="carid" name="carid" type="hidden" value="{{ car.id }}">
+			    <button type="submit" class="close" aria-label="Удалить">
+			    	<span aria-hidden="true">&times;</span>
+			    </button>
+			</form>
+		  </td>
+    	</tr>
+  	{% endfor %}
+	   </tbody>
+</table>
+</div>
+
+{% include "import_cars_modal.html" %}
+<!--SHOW MODAL ON ERRORS-->
+
+<script type="text/javascript">
+	$('#import_cars_modal').modal();
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+	    $('.import_cars_modal').modal('show');
+	});
+</script>
+
+{%  endblock content %}

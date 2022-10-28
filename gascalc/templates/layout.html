@@ -1,0 +1,144 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+
+    <title>Gas and Routes calculator</title>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/layout/bootstrap.min.css') }}">
+
+    <!-- Custom styles for this template -->
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/layout/layout.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/layout/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/select2.min.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/select2-bootstrap4.css') }}">
+
+    <!--STYLES VISUAL
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/_variables.scss') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/_bootswatch.scss') }}">-->
+
+    <script src="{{ url_for('static', filename='js/jquery-3.5.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/select2.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/dynamic-form.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/moment.js') }}"></script>
+    <link rel="icon" href="{{ url_for('static', filename='assets/img/logo.png') }}">
+
+  </head>
+
+  <body>
+
+    <!-- Vertical navbar -->
+    <div class="vertical-nav bg-white" id="sidebar">
+      <a href="{{ url_for('landing.land') }}">
+        <div class="py-4 px-3 mb-4 bg-light">
+          <div class="media d-flex align-items-center">
+            <div class="media-body">
+              <h4 class="m-0">GASCALC</h4>
+              <p class="font-weight-light text-muted mb-0">Автоматизированное построение путевых листов</p>
+            </div>
+          </div>
+        </div>
+      </a>
+      
+
+      <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Основные вкладки</p>
+
+      <ul class="nav flex-column bg-white mb-0">
+        <li class="nav-item">
+          <a href="{{ url_for('add_locations.home') }}" class="{{ 'nav-link active' if active_page == 'home' else 'nav-link' }}">
+                    <i class="fa fa-home mr-3 text-primary fa-fw"></i>
+                    Адреса
+                </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ url_for('add_employees.employees') }}" class="{{ 'nav-link active' if active_page == 'employees' else 'nav-link' }}">
+                    <i class="fa fa-id-card mr-3 text-primary fa-fw"></i>
+                    Сотрудники
+                </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ url_for('add_cars.cars') }}" class="{{ 'nav-link active' if active_page == 'cars' else 'nav-link' }}">
+                    <i class="fa fa-car mr-3 text-primary fa-fw"></i>
+                    Автопарк
+                </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ url_for('calculations.start_calc') }}" class="{{ 'nav-link active' if active_page == 'calculate' else 'nav-link' }}">
+                    <i class="fa fa-calculator mr-3 text-primary fa-fw"></i>
+                    Расчеты
+                </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ url_for('calculations.lists') }}" class="{{ 'nav-link active' if active_page == 'lists' else 'nav-link' }}">
+                    <i class="fa fa-file mr-3 text-primary fa-fw"></i>
+                    Маршрутные листы
+                </a>
+        </li>
+      </ul>
+
+      <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">Пользовательские вкладки</p>
+
+      <ul class="nav flex-column bg-white mb-0">
+        <li class="nav-item">
+          <a href="{{ url_for('settings.change') }}" class="{{ 'nav-link active' if active_page == 'settings' else 'nav-link' }}">
+                    <i class="fa fa-cog mr-3 text-primary fa-fw"></i>
+                    Настройки
+                </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ url_for('settings.change') }}" class="nav-link">
+                    <i class="fa fa-user-circle mr-3 text-primary fa-fw"></i>
+                    {{ current_user.email }}
+                </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ url_for('account.logout') }}" class="nav-link">
+                    <i class="fa fa-sign-out mr-3 text-primary fa-fw"></i>
+                    Выйти
+                </a>
+        </li>
+      </ul>
+    </div>
+    <div class="page-content p-5" id="content">
+      <!-- Toggle button -->
+      <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i>
+        <small class="text-uppercase font-weight-bold">МЕНЮ</small>
+      </button>
+      {% block content %}{% endblock content %}
+    </div>
+
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/tempusdominus-bootstrap-4.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/layout/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/layout/bootstrap.bundle.min.js') }}"></script>
+
+    <script>
+      $(function() {
+        // Sidebar toggle behavior
+        $('#sidebarCollapse').on('click', function() {
+          $('#sidebar, #content').toggleClass('active');
+        });
+      });
+    </script>
+
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+    <script>
+      feather.replace()
+    </script>
+  </body>
+</html>

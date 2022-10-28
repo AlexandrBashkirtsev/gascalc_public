@@ -1,0 +1,73 @@
+{% extends 'landing/landing_layout.html' %}
+{% block content %}
+<div class="container mt-5">
+    <header class="masthead bg-secondary text-black">
+        <div class="row">
+            <div class="col">
+                <!-- Masthead Heading-->
+                <h1 class="masthead-heading mb-0 font-weight-bold">ХВАТИТ ТРАТИТЬ ВРЕМЯ НА ЗАПОЛНЕНИЕ ПУТЕВЫХ ЛИСТОВ</h1>
+                <!-- Masthead Subheading-->
+                <p class="pre-wrap masthead-subheading font-weight-light mb-0 mt-4">Импортируй базу адресов. Рассчитывай маршруты. Сверяй расход топлива.</p>
+                <button type="button" class="btn btn-success btn-lg mt-4">Купить</button>
+                <button type="button" class="btn btn-info btn-lg mt-4 ml-4">Демо</button>
+            </div>
+            <div class="col">
+                <video width="640" height="360" playsinline="playsinline" autoplay loop muted>
+                    <source src="{{ url_for('static', filename='assets/img/demo.webm') }}" type="video/webm" />
+                </video>
+            </div>
+        </div>
+    </header>
+</div>
+
+<div class="container mt-5">
+    <section class="page-section portfolio" id="">
+      <a class="anchor" id="portfolio"></a>
+        <div class="container mt-5">
+            <!-- Spec Section Heading-->
+            <div class="text-center">
+                <h1 class="font-weight-bold">ПУТЕВЫЕ ЛИСТЫ МОЖНО ЗАПОЛНЯТЬ ЛЕГКО</h1>
+            </div>
+            <!-- Spec Grid Items-->
+            <div class="row justify-content-center mt-5">
+                <!-- Spec Items-->
+                <div class="col mb-5">
+                    <div class="w-50 mx-auto">
+                        <img class="img-fluid" src="{{ url_for('static', filename='assets/img/portfolio/clock.png') }}">
+                    </div>
+                    
+                    <h3 class="font-weight-bold text-center justify-content-center">Свободное время</h3>
+                    <p class="font-weight-light text-center mb-0 mt-4">Gascalc позволяет сократить время рутинного заполнения и расчета путевых листов</p>
+                </div>
+                <div class="col mb-5">
+                    <div class="w-50 mx-auto">
+                        <img class="img-fluid" src="{{ url_for('static', filename='assets/img/portfolio/petrol.png') }}">
+                    </div>
+                    <h3 class="font-weight-bold text-center justify-content-center">Учет ресурсов</h3>
+                    <p class="font-weight-light text-center mb-0 mt-4">При расчете путевого листа укажите автотранспорт и расход топлива посчитается автоматически</p>
+                </div>
+                <div class="col mb-5">
+                    <div class="w-50 mx-auto">
+                        <img class="img-fluid" src="{{ url_for('static', filename='assets/img/portfolio/coins.png') }}">
+                    </div>
+                    <h3 class="font-weight-bold text-center justify-content-center">Затраты</h3>
+                    <p class="font-weight-light text-center mb-0 mt-4">Ведите учет затрат на передвижения сотрудников и автопарка</p>
+                </div>
+                <div class="col mb-5">
+                    <div class="w-50 mx-auto">
+                        <img class="img-fluid" src="{{ url_for('static', filename='assets/img/portfolio/support1.png') }}">
+                    </div>
+                    <h3 class="font-weight-bold text-center justify-content-center">Поддержка</h3>
+                    <p class="font-weight-light text-center mb-0 mt-4">Если у Вас есть вопросы - мы на связи!</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</div>
+
+{% include "landing/pay/options.html" %}
+
+{% include "landing/review.html" %}
+
+{%  endblock content %}

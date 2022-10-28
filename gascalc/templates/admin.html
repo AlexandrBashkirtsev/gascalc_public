@@ -1,0 +1,43 @@
+{% extends 'admin_layout.html' %}
+{% set active_page = "home" %}
+{% block content %}
+
+	<!--CONTROL BUTTONS-->
+	<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+
+		<!--TABLE OF USERS-->
+		<h2>Пользователи</h2>
+		<div class="table-responsive">
+		<table class="table table-striped table-sm">
+		  <thead>
+		    <tr>
+		      <th>#</th>
+		      <th>E-mail</th>
+		      <th>Локации</th>
+		      <th>Сотрудники</th>
+		      <th>Машины</th>
+		      <th>Маршр.листы</th>
+		      <th>Подписка</th>
+		      <th>Запросы/нед</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  	{% for user in users %}
+		  		<tr>
+		  		  <td>{{ user['id'] }}</td>
+			      <td>{{ user['email'] }}</td>
+			      <td>{{ user['locations'] }}</td>
+			      <td>{{ user['employees'] }}</td>
+			      <td>{{ user['cars'] }}</td>
+			      <td>{{ user['lists'] }}</td>
+			      <td>{{ user['user'] }}</td>
+			      <td>{{ user['user'] }}</td>
+		    	</tr>
+		  	{% endfor %}
+	  	   </tbody>
+		</table>
+		</div>
+	</main>
+
+
+{%  endblock content %}

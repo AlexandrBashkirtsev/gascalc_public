@@ -1,0 +1,184 @@
+<form method="POST" action="" enctype="multipart/form-data">
+    <div class="row">
+        <div class="form-group col-sm">
+            {{ form.price.label(class="form-control-label") }}
+            {% if form.price.errors %}
+                {{ form.price(class="form-control form-control-sm is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.price.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.price(class="form-control form-control-sm") }}
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-sm">
+            {{ form.employee.label(class="form-control-label") }}
+            {% if form.employee.errors %}
+                {{ form.employee(class="form-control form-control-sm is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.employee.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.employee(class="form-control form-control-sm", id="employee_choice") }}
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-sm">
+            {{ form.car.label(class="form-control-label") }}
+            {% if form.car.errors %}
+                {{ form.car(class="form-control form-control-sm is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.car.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.car(class="form-control form-control-sm", id="car_choice") }}
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-sm">
+            {{ form.start_time.label(class="form-control-label") }}
+            {% if form.start_time.errors %}
+                {{ form.start_time(class="form-control form-control-sm is-invalid", type="datetime-local") }}
+                <div class="invalid-feedback">
+                    {% for error in form.start_time.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.start_time(class="form-control form-control-sm", type="datetime-local") }}
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-sm d-flex justify-content-center bg-light">
+            <div class="p-3 mb-2 text-dark">Маршрут</div>
+        </div>
+    </div>
+
+	<div class="form-group dynamic_form" id="dynamic_form">
+        <div class="dyn-row">
+            <div class="row">
+                <div class="col-sm-1">
+                    <div class="text-info" id="locindex">
+                        1
+                    </div>
+                </div>
+                <div class="col-sm-10">
+                    <div class="select">
+                        {{ form.add_location(class="form-control", id="add_location") }}
+                    </div>
+                </div>
+                <div class="col-sm-1">
+                    <a href="javascript:void(0)" class="btn" id="minus5">
+                        <span data-feather="x"></span>
+                    </a>
+                </div> 
+            </div>
+            <hr>
+        </div>
+	</div>
+	<div id="container-dynamic"></div>	
+	<div class="row">
+		<div class="form-group col-sm d-flex justify-content-center">
+        	<a href="javascript:void(0)" class="btn" id="plus5">
+        		<span data-feather="plus-circle"></span>
+        	</a>
+        </div>
+	</div>
+	<div class="row">
+        <div class="form-group col-sm">
+            {{ form.submit(class="btn btn-block btn-primary") }}
+        </div>
+	</div>
+    {% include "flashes.html" %}
+</form>
+
+<script>
+
+var GlobalVars = {};
+
+$(document).ready(function(){
+
+    GlobalVars.maxField = 20; //Input fields increment limitation
+    var addButton = $('#plus5'); //Add button selector
+    GlobalVars.wrapper = $('#container-dynamic'); //Input field wrapper
+    GlobalVars.fieldHTML = document.getElementById("dynamic_form").innerHTML //New input field html
+
+    var backPopulate = JSON.parse('{{ data|safe }}');
+    console.log(backPopulate);
+
+    GlobalVars.x = 1; //Initial field counter is 1
+
+    $('#add_location').val(backPopulate[0]);
+    $('#add_location').attr("id","add_location0") //change id
+
+    $('#locindex').attr("id","locindex0") //change index id
+    $('#add_location0').select2(); // initial field
+
+    $('#car_choice').select2();
+    $('#employee_choice').select2();
+
+    $.each(backPopulate,function(index,value){
+
+    	if (index > 0){
+
+    		console.log('POPULATING')
+			add_dyn_loc(value);
+			console.log(value);}
+			
+		});
+    
+    //Once add button is clicked
+    $(addButton).click(function(){
+
+    	add_dyn_loc('7');
+        
+    });
+    
+    //Once remove button is clicked
+    $(GlobalVars.wrapper).on('click', '#minus5', function(e){
+
+        e.preventDefault();
+        $(this).closest(".dyn-row").remove(); //Remove field html
+        GlobalVars.x--; //Decrement field counter
+    });
+});
+
+function add_dyn_loc(value) {
+
+	//Check maximum number of input fields
+    if(GlobalVars.x < GlobalVars.maxField){ 
+        GlobalVars.x++; //Increment field counter
+        $(GlobalVars.wrapper).append(GlobalVars.fieldHTML); //Add field html
+        $('#add_location').val(value);
+        $('#add_location').attr("id","add_location"+GlobalVars.x)//change id
+        $('#locindex').text(GlobalVars.x);
+        $('#locindex').attr("id","locindex"+GlobalVars.x)
+		$('#add_location'+GlobalVars.x).select2(); // new select2  field
+    }
+}
+</script>
+
+<style>
+
+#minus5 {
+  position: relative;
+  left: -20px;
+  top: -5px;
+
+}
+</style>

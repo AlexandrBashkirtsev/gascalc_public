@@ -1,0 +1,108 @@
+<!--SETTINGS CALCULATION FORM-->
+<form method="POST" action="" enctype="multipart/form-data">
+	{{ form.hidden_tag() }}
+	<fieldset class="form-group">
+		<div class="row">
+			<div class="form-group col-sm">
+				{{ form.price.label(class="form-control-label") }}
+				{% if form.price.errors %}
+					{{ form.price(class="form-control form-control-sm is-invalid") }}
+					<div class="invalid-feedback">
+						{% for error in form.price.errors %}
+							<span>{{ error }}</span>
+						{% endfor %}
+					</div>
+				{% else %}
+					{{ form.price(class="form-control form-control-sm") }}
+				{% endif %}
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="form-group col-sm">
+				{{ form.employee.label(class="form-control-label") }}
+				{% if form.employee.errors %}
+					{{ form.employee(class="form-control form-control-sm is-invalid") }}
+					<div class="invalid-feedback">
+						{% for error in form.employee.errors %}
+							<span>{{ error }}</span>
+						{% endfor %}
+					</div>
+				{% else %}
+					{{ form.employee(class="form-control form-control-sm", id="employee_choice") }}
+				{% endif %}
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="form-group col-sm">
+				{{ form.car.label(class="form-control-label") }}
+				{% if form.car.errors %}
+					{{ form.car(class="form-control form-control-sm is-invalid") }}
+					<div class="invalid-feedback">
+						{% for error in form.car.errors %}
+							<span>{{ error }}</span>
+						{% endfor %}
+					</div>
+				{% else %}
+					{{ form.car(class="form-control form-control-sm", id="car_choice") }}
+				{% endif %}
+			</div>
+		</div>
+
+		<div class="row">
+
+			<div class="form-group col-sm">
+				{{ form.base_location.label(class="form-control-label") }}
+				{% if form.base_location.errors %}
+					{{ form.base_location(class="form-control form-control-sm is-invalid") }}
+					<div class="invalid-feedback">
+						{% for error in form.base_location.errors %}
+							<span>{{ error }}</span>
+						{% endfor %}
+					</div>
+				{% else %}
+					{{ form.base_location(class="form-control form-control-sm", id="base_loc_choice") }}
+				{% endif %}
+			</div>
+
+		</div>
+
+		<div class="row">
+
+			<div class="form-group col-sm">
+				{{ form.start_time.label(class="form-control-label") }}
+				{% if form.start_time.errors %}
+					{{ form.start_time(class="form-control form-control-sm is-invalid", type="datetime-local") }}
+					<div class="invalid-feedback">
+						{% for error in form.start_time.errors %}
+							<span>{{ error }}</span>
+						{% endfor %}
+					</div>
+				{% else %}
+					{{ form.start_time(class="form-control form-control-sm", type="datetime-local") }}
+				{% endif %}
+			</div>
+
+		</div>
+		
+	</fieldset>
+
+	<div class="form-group">
+		{{ form.submit(class="btn btn-block btn-primary") }}
+	</div>
+	{% include "flashes.html" %}
+</form>
+
+<script>
+
+$(document).ready(function(){
+
+    
+    $('#base_loc_choice').select2();
+    $('#car_choice').select2();
+    $('#employee_choice').select2();
+
+});
+
+</script>

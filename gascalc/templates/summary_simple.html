@@ -1,0 +1,125 @@
+<style>
+  .table > tbody > tr:first-child > td {
+    border: none;
+}
+</style>
+<div class="card">
+  <div class="card-header">
+    Сводка
+  </div>
+  <div class="card-body">
+    <table class="card-table table">
+      <tbody>
+        <tr>
+          <td>
+            Точка выезда:
+          </td>
+          <td>
+            {{ settings['base_location'] }}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Водитель:
+          </td>
+          <td>
+            {{ settings['driver_fullname'] }}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Легковой автомобиль:
+          </td>
+          <td>
+            {{ settings['car'] }}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Наименование топлива:
+          </td>
+          <td>
+            {{ settings['fuel'] }}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Норма расхода:
+          </td>
+          <td>
+            {{ settings['consumption'] }}
+            <small class="text-muted">
+              л/100км
+            </small>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Расход топлива по норме:
+          </td>
+          <td>
+            {{ "{:10.2f}".format(summary['fuel_marge']) }}
+            <small class="text-muted">
+              л
+            </small>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Расход топлива по факту:
+          </td>
+          <td>
+            {{ "{:10.2f}".format(summary['fuel_marge']) }}
+            <small class="text-muted">
+              л
+            </small>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Пробег:
+          </td>
+          <td>
+            {{ "{:10.3f}".format(summary['distance']) }}
+            <small class="text-muted">
+              км
+            </small>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Затраты:
+          </td>
+          <td>
+            {{ summary['resource_marge'] }}
+            <small class="text-muted">
+              руб
+            </small>
+          </td>
+        </tr>
+        <tr class="table-primary">
+          <td>
+            Общие затраты:
+          </td>
+          <td>
+            {{ general_marge }}
+            <small class="text-muted">
+              руб / 
+            </small>
+            {{ resource }}
+            <small class="text-muted">
+              руб
+            </small>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="progress">
+      <div class="progress-bar" role="progressbar" style="width: {{  progress }}%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+  </div>
+  <div class="card-body">
+    <a href="{{ url_for('calculations.generate') }}" class="btn btn-info">Выгрузить</a>
+    <a href="{{ url_for('calculations.save') }}" class="btn btn-success">Сохранить</a>
+  </div>
+</div>

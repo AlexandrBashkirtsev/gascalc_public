@@ -1,0 +1,79 @@
+{% extends 'layout.html' %}
+{% set active_page = "calculate" %}
+{% block content %}
+
+<div class="row">
+	<!--АЩКЬ-->
+    <div class="col-sm">
+    	<div class="card">
+			<div class="card-header container-fluid">
+				<div class="row">
+					<div class="col-sm">
+	    				Параметры расчета
+	    			</div>
+					<div class="col-sm-4 float-right">
+	    				<div class="btn-toolbar mb-2 mb-md-0">
+						  <div class="btn-group mr-2">
+						    <a class="btn btn-sm {{ 'btn-success' if manual else 'btn-outline-secondary' }}" href="{{ url_for('calculations.manual_calc') }}">Ручной</a>
+						    <a class="btn btn-sm {{ 'btn-success' if not manual else 'btn-outline-secondary' }}" href="{{ url_for('calculations.start_calc') }}">Авто</a>
+						  </div>
+						</div>
+	    			</div>
+				</div>
+				
+				
+			</div>
+			<div class="card-body">
+				{% if manual %}
+					{% include "add_locations_dform.html" %}	
+				{% else %}
+					{% include "calc_start.html" %}	
+				{% endif %}
+			</div>
+		</div>
+    </div>
+
+    <!--SUMMARY-->
+    <div class="col-sm">
+    	{% include "summary_simple.html" %}				
+    </div>
+</div>
+
+<!--ROUTE-->
+<div class="row">
+	<div class="table-responsive">
+	<table class="table table-striped table-sm">
+	  <thead>
+	    <tr>
+	      <th>#</th>
+	      <th>Маршрут</th>
+	      <th>Расстояние</th>
+	      <th>Время поездки</th>
+	      <th>Время остановки</th>
+	      <th>Время выезда</th>
+	      <th>Время приезда</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	{% for location in formatted_route %}
+	  		<tr>
+	  			<th>{{ location['index'] }}</th>
+		  		<th>{{ location['location'] }}</th>
+		  		<th>{{ location['distance'] }} км</th>
+		  		<th>{{ location['duration'][:-3] }}</th>
+		  		<th>{{ location['time_spent'][:-3] }}</th>
+		  		<th>{{ location['out_time'][:-3] }}</th>
+		  		<th>{{ location['in_time'][:-3] }}</th>
+	  		</tr>
+		{% endfor %}
+	  </tbody>
+	</table>
+    </div>
+    
+</div>
+<!--MAP OF LOCATIONS-->
+<div class="embed-responsive embed-responsive-16by9">
+  <iframe class="embed-responsive-item" src="{{ url_for('mapping.get_route_map') }}"></iframe>
+</div>
+
+{%  endblock content %}

@@ -1,0 +1,38 @@
+<div class="container mt-5">
+  <section class="page-section pricing mb-0" id="">
+    <a class="anchor" id="review"></a>
+      <div class="container">
+          <!-- Icon Divider-->
+          <div class="text-center">
+              <h1 class="font-weight-bold">ОСТАВЬТЕ ОТЗЫВ</h1>
+          </div>
+          
+          <!-- Review Section Content-->
+
+          <p class="font-weight-light text-center mb-0 mt-4">GASCALC находится в стадии разработки. Вы можете повлиять на ее ход, рассказав нам о положительных и отрицательных сторонах сервиса и оставив свои пожелания здесь. Отзыв анонимен и не требует регистрации.</p>
+          
+          <form method="POST" action="" enctype="multipart/form-data">
+          {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+              <div class="form-group col">
+                {{ form.review.label(class="form-control-label") }}
+                {% if form.review.errors %}
+                  {{ form.review(class="form-control form-control-sm is-invalid") }}
+                  <div class="invalid-feedback">
+                    {% for error in form.review.errors %}
+                      <span>{{ error }}</span>
+                    {% endfor %}
+                  </div>
+                {% else %}
+                  {{ form.review(class="form-control form-control-sm") }}
+                {% endif %}
+              </div>
+              <div class="form-group col">
+                {{ form.submit(class="btn btn-outline-info") }}
+              </div>
+            </fieldset>
+          </form>
+
+      </div>
+  </section>
+</div>
